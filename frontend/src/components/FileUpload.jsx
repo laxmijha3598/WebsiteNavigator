@@ -23,9 +23,9 @@ export default function FileUpload({ onUrlsLoaded }) {
       const formData = new FormData();
       formData.append("file", selectedFile);
 
-      const { data } = await axios.post(`${API_BASE}/upload`, formData, {
-        headers: { "Content-Type": "multipart/form-data" }
-      });
+      const { data } = await axios.post(`${API_BASE}/api/upload`, formData, {
+  headers: { "Content-Type": "multipart/form-data" }
+});
 
       onUrlsLoaded(data.urls || []);
     } catch (err) {

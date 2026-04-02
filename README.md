@@ -47,6 +47,23 @@ Runs on `http://localhost:5173`.
 }
 ```
 
+## Deploy frontend on Vercel
+
+The React app lives in `frontend/`. Vercel does not run your Express server long-term the same way a VPS does, so **deploy the API separately** (e.g. [Render](https://render.com), [Railway](https://railway.app)) and point the UI at it.
+
+1. Push this repo to GitHub (if you have not already).
+2. In [Vercel](https://vercel.com) → **Add New** → **Project** → **Import** your repository.
+3. **Root Directory**: set to `frontend` (click Edit and choose the `frontend` folder).
+4. Framework Preset should detect **Vite**. Build command `npm run build`, output `dist` — the included `frontend/vercel.json` matches this.
+5. **Environment Variables** (Production):
+   - `VITE_API_URL` = your backend’s public URL, e.g. `https://website-navigator-api.onrender.com`  
+   - Use **https**, no trailing slash.
+6. Deploy. After the API URL is known, add or update `VITE_API_URL` and **Redeploy** so the bundle is rebuilt with the correct API address.
+
+Local check before shipping: from `frontend`, run `npm run build` with `VITE_API_URL` set the same way you will use on Vercel.
+
+See `frontend/.env.example` for the variable name.
+
 ## Notes
 
 - Google Sheet must be publicly accessible.

@@ -7,7 +7,10 @@ import axios from "axios";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+
+app.use(cors({
+  origin: "*"
+}));
 app.use(express.json());
 
 const upload = multer({ storage: multer.memoryStorage() });
